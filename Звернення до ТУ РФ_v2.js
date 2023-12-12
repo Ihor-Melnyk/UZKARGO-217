@@ -55,6 +55,7 @@ function onCardInitialize() {
   setPropResposible();
   setCreateProps();
   EnterResultSpecificationTask();
+  setPropRegistration();
 }
 
 function SendOutDocTask() {
@@ -391,7 +392,7 @@ function SendOutDocTask(stateTask) {
       EdocsApi.setControlProperties({ code: "ApplicationKind", hidden: true, disabled: true, required: false });
       EdocsApi.setControlProperties({ code: "MakingСhanges", hidden: true, disabled: true, required: false });
       EdocsApi.setControlProperties({ code: "TelephoneContactPerson", hidden: true, disabled: true, required: false });
-      EdocsApi.setControlProperties({ code: "StructureDepar", hidden: true, disabled: true, required: false });
+      EdocsApi.setControlProperties({ code: "StructureDepart", hidden: true, disabled: true, required: false });
       EdocsApi.setControlProperties({ code: "VisaHolder", hidden: true, disabled: true, required: false });
       EdocsApi.setControlProperties({ code: "Registraion", hidden: true, disabled: true, required: false });
       EdocsApi.setControlProperties({ code: "RegNumber", hidden: true, disabled: true, required: false });
@@ -401,7 +402,7 @@ function SendOutDocTask(stateTask) {
     EdocsApi.setControlProperties({ code: "ApplicationKind", hidden: true, disabled: true, required: false });
     EdocsApi.setControlProperties({ code: "MakingСhanges", hidden: true, disabled: true, required: false });
     EdocsApi.setControlProperties({ code: "TelephoneContactPerson", hidden: true, disabled: true, required: false });
-    EdocsApi.setControlProperties({ code: "StructureDepar", hidden: true, disabled: true, required: false });
+    EdocsApi.setControlProperties({ code: "StructureDepart", hidden: true, disabled: true, required: false });
     EdocsApi.setControlProperties({ code: "VisaHolder", hidden: true, disabled: true, required: false });
     EdocsApi.setControlProperties({ code: "Registraion", hidden: true, disabled: true, required: false });
     EdocsApi.setControlProperties({ code: "RegNumber", hidden: true, disabled: true, required: false });
@@ -429,7 +430,6 @@ function onTaskExecuteSendOutDoc(routeStage) {
 function onTaskExecuteMainTask(routeStage) {
   if (routeStage.executionResult == "rejected") {
     sendCommand(routeStage);
-    setPropRegistration();
   }
 }
 
@@ -521,7 +521,7 @@ function onTaskExecuteAddEmployee(routeStage) {
 
 function setPropRegistration() {
   debugger;
-  if (EdocsApi.getCaseTaskDataByCode("AddEmployee" + EdocsApi.getAttributeValue("Sections").value)?.state == "rejected") {
+  if (EdocsApi.getCaseTaskDataByCode("AddEmployee" + EdocsApi.getAttributeValue("Sections").value)?.state == "completed" && EdocsApi.getCaseTaskDataByCode("MainTask")?.state == "rejected") {
     EdocsApi.setControlProperties({ code: "Registraion", hidden: true, disabled: true, required: false });
     EdocsApi.setControlProperties({ code: "RegDate", hidden: true, disabled: true, required: false });
     EdocsApi.setControlProperties({ code: "RegNumber", hidden: true, disabled: true, required: false });
