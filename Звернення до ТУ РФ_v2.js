@@ -58,32 +58,6 @@ function onCardInitialize() {
   setPropRegistration();
 }
 
-function SendOutDocTask() {
-  debugger;
-  var stateTask = EdocsApi.getCaseTaskDataByCode("SendOutDoc").state;
-  if (stateTask == "completed") {
-    setPropertyDisabled("ApplicationKind");
-    setPropertyDisabled("MakingСhanges");
-    setPropertyDisabled("TelephoneContactPerson");
-    setPropertyDisabled("Branch");
-    setPropertyDisabled("StructureDepart");
-    setPropertyDisabled("VisaHolder");
-    setPropertyDisabled("RegNumber");
-    setPropertyDisabled("RegDate");
-    setPropertyDisabled("Registraion");
-  } else {
-    setPropertyDisabled("ApplicationKind", false);
-    setPropertyDisabled("MakingСhanges", false);
-    setPropertyDisabled("TelephoneContactPerson", false);
-    setPropertyDisabled("Branch", false);
-    setPropertyDisabled("StructureDepart", false);
-    setPropertyDisabled("VisaHolder", false);
-    setPropertyDisabled("RegNumber", false);
-    setPropertyDisabled("RegDate", false);
-    setPropertyDisabled("Registraion", false);
-  }
-}
-
 //Скрипт 4. Автоматичне визначення email контактної особи Замовника
 function setContractorRPEmailOnCreate() {
   if (CurrentDocument.inExtId) {
